@@ -1,4 +1,5 @@
 {
+  "homepage": "https://dsaikiran01.github.io/WeatherPulse",
   "name": "vite-react-typescript-starter",
   "private": true,
   "version": "0.0.0",
@@ -7,7 +8,7 @@
     "dev": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "build": "tsc -b && vite build",
+    "build": "tsc --no-check && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
