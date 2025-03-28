@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "build": "tsc --no-check && vite build",
+    "deploy": "gh-pages -d dist --repo https://github.com/dsaikiran01/WeatherPulse.git",
+    "build": "tsc --noCheck && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
