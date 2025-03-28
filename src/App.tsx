@@ -18,8 +18,6 @@ function App() {
 
     const API_KEY = import.meta.env.VITE_OPEN_API_KEY;
 
-    // ... [previous fetchWeather and fetchForecast functions remain the same]
-
     const fetchWeather = useCallback(async () => {
         if (!city.trim()) {
             toast({
@@ -53,7 +51,6 @@ function App() {
         }
     }, [city, toast]);
 
-    // Fetch weather forecast for the next 6 days
     const fetchForecast = useCallback(async () => {
         if (!city.trim()) return;
         try {
@@ -76,8 +73,6 @@ function App() {
         }
     }, [city, toast]);
 
-    // ... [previous utility functions remain the same]
-
     useEffect(() => {
         fetchForecast();
     }, [city]);
@@ -90,7 +85,6 @@ function App() {
         });
     };
 
-    // Prepare chart data for next 6 days
     const chartData = forecast
         ? {
             labels: forecast.list.slice(0, 6).map((item) => {
