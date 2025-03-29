@@ -2,7 +2,7 @@
 
 Welcome to **WeatherPulse**, the ultimate weather dashboard that provides real-time weather data with location filters and interactive elements! 🌍☀️ Whether you want to check the current temperature, see the weather forecast, or explore your favorite locations on a map, this app has everything you need. 🌡️🌧️
 
-Try it out now: [WeatherPulse](https://dsaikiran01.github.io/WeatherPulse)
+Try it out now: [WeatherPulse](https://weather-pulse-xi.vercel.app/)
 
 ⭐️ **If you like this project, don't forget to give it a star!** ⭐️  
 Your support helps us improve the project and keep adding cool features!
@@ -102,7 +102,7 @@ Feel free to create issues for bugs, improvements, or feature requests. Let’s 
 
 ## 🚀 Future Improvements
 
-1. **Hourly Forecast** 🌤️: Add a more detailed hourly weather forecast display.
+1. **Daily Forecast** 🌤️: Add a more detailed daily weather forecast display.
 2. **User Authentication** 🔐: Allow users to save their favorite locations and preferences.
 3. **Dark Mode** 🌙: Implement a toggle for dark and light mode based on user preference.
 4. **Extended Map Features** 🗺️: Add more map interactions like weather layers and geolocation.
