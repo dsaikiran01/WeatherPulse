@@ -132,7 +132,7 @@ function App() {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5 }}
                     whileHover={{ scale: 1.1 }}
-                    className="text-6xl text-yellow-500 mb-2"
+                    className="text-6xl text-yellow-300 mb-2"
                 >
                     {icon}
                 </motion.div>
@@ -169,7 +169,7 @@ function App() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center mb-6">
                         <h1 className="flex text-4xl font-semibold"> <FaRainbow /> WeatherPulse</h1>
                         <div className="max-w-md w-full">
                             <motion.div
@@ -177,7 +177,7 @@ function App() {
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.2 }}
                             >
-                                <div className="flex space-x-4">
+                                <div className="flex flex-col sm:flex-row space-x-4  gap-4 sm:gap-0 items-center">
                                     <Input
                                         placeholder="Enter city name..."
                                         value={city}
@@ -211,91 +211,86 @@ function App() {
                             {/* Left Column - Weather Information Cards */}
                             <div className="w-full md:w-1/2 flex flex-col gap-6">
 
+                                <WeatherIconWithTemperature weather={weather} />
+
                                 <div className='flex flex-col sm:flex-row gap-6 card-pair'>
-                                {/* Location Card */}
-                                <div className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-lg shadow-lg p-6 card">
-                                    <div className="flex flex-col gap-3 md:flex-row justify-center items-center">
-                                        <div>
-                                            <h3 className="text-2xl font-bold text-white flex items-center ">
-                                                <FaMapPin /> {weather.name}, {weather.sys.country}
+                                    {/* Location Card */}
+                                    <div className="flex justify-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-lg shadow-lg p-6 card">
+                                        <div className="flex flex-col gap-3 md:flex-row justify-center items-center">
+                                            {/* <div> */}
+                                            <h3 className="text-2xl font-bold text-white flex flex-col items-center ">
+                                                <FaMapPin /> <p className='text-4xl'>{weather.name}</p> {weather.sys.country}
                                             </h3>
-                                            <p className="text-lg text-white capitalize font-medium text-center">{weather.weather[0].description}</p>
                                         </div>
-                                        <div className='flex flex-col items-center'>
-                                            <h2 className="text-4xl text-white font-bold">{Math.round(weather.main.temp)}°C</h2>
-                                            <p className='text-4xl text-yellow-400'>
-                                                {getWeatherIcon(weather.weather[0].description)}
+                                    </div>
+
+                                    {/* Temperature Details Card */}
+                                    <div className=" bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 rounded-lg shadow-lg p-6 card">
+                                        <h3 className="text-2xl sm:text-xl font-semibold text-white flex flex-col sm:flex-row items-center gap-2 sm:text-left text-center mb-2">
+                                            <FaThermometerHalf />
+                                            Temperature Details
+                                        </h3>
+                                        <div className='flex flex-col items-center font-medium'>
+                                            <p className='text-white text-lg font-medium'>Feels like: {Math.round(weather.main.feels_like)}°C</p>
+                                            <p className='text-white text-lg font-medium'>Min: {Math.round(weather.main.temp_min)}°C</p>
+                                            <p className='text-white text-lg font-medium'>Max: {Math.round(weather.main.temp_max)}°C</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='flex flex-col sm:flex-row gap-6 card-pair'>
+                                    {/* Wind Information Card */}
+                                    <div className="bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600 rounded-lg shadow-lg p-6 card">
+                                        <h3 className="text-2xl sm:text-xl font-semibold text-white flex flex-col sm:flex-row items-center gap-2 sm:text-left text-center mb-2">
+                                            <FaWind /> Wind Information
+                                        </h3>
+                                        <div className='flex flex-col items-center font-medium'>
+                                            <p className='text-white text-lg font-medium'>Speed: {weather.wind.speed} m/s</p>
+                                            <p className='text-white text-lg font-medium'>Direction: {weather.wind.deg}°</p>
+                                            <p className='text-white text-lg font-medium'>Gusts: {weather.wind.gust || 'N/A'} m/s</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Humidity & Pressure Card */}
+                                    <div className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-lg shadow-lg p-6 card">
+                                        <h3 className="text-2xl sm:text-xl font-semibold text-white flex flex-col sm:flex-row items-center gap-2 sm:text-left text-center mb-2">
+                                            <FaTint /> Humidity & Pressure
+                                        </h3>
+                                        <div className='flex flex-col items-center font-medium'>
+                                            <p className='text-white text-lg font-medium'>Humidity: {weather.main.humidity}%</p>
+                                            <p className='text-white text-lg font-medium'>Pressure: {weather.main.pressure} hPa</p>
+                                            <p className='text-white text-lg font-medium'>Sea Level: {weather.main.sea_level || 'N/A'} hPa</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='flex flex-col sm:flex-row gap-6 card-pair'>
+                                    {/* Visibility & Clouds Card */}
+                                    <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-lg shadow-lg p-6 h-full card">
+                                        <h3 className="text-2xl sm:text-xl font-semibold text-white flex flex-col sm:flex-row items-center gap-2 sm:text-left text-center mb-2">
+                                            <FaEye /> Visibility & Clouds
+                                        </h3>
+                                        <div className='flex flex-col items-center font-medium'>
+                                            <p className='text-white text-lg font-medium'>Visibility: {weather.visibility / 1000} km</p>
+                                            <p className="text-white text-lg font-medium flex items-center gap-2">
+                                                <FaCloud color='white' /> Cloud Cover: {weather.clouds.all}%
                                             </p>
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* Temperature Details Card */}
-                                <div className="bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 rounded-lg shadow-lg p-6 card">
-                                    <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-                                        <FaThermometerHalf /> Temperature Details
-                                    </h3>
-                                    <div className='flex flex-col items-center space-y-2 font-medium'>
-                                        <p className='text-white text-lg font-medium'>Feels like: {Math.round(weather.main.feels_like)}°C</p>
-                                        <p className='text-white text-lg font-medium'>Min: {Math.round(weather.main.temp_min)}°C</p>
-                                        <p className='text-white text-lg font-medium'>Max: {Math.round(weather.main.temp_max)}°C</p>
+                                    {/* Sunrise/Sunset Card */}
+                                    <div className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 rounded-lg shadow-lg p-6 card">
+                                        <h3 className="text-xl font-semibold text-white flex flex-col items-center gap-2">
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <FaSun color="yellow" />
+                                                Sunrise: {formatTime(weather.sys.sunrise)}
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <FaSun color="yellow" />
+                                                Sunset: {formatTime(weather.sys.sunset)}
+                                            </div>
+                                        </h3>
                                     </div>
-                                </div>
-                                </div>
-
-                                <div className='flex flex-col sm:flex-row gap-6 card-pair'>
-                                {/* Wind Information Card */}
-                                <div className="bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600 rounded-lg shadow-lg p-6 card">
-                                    <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-                                        <FaWind /> Wind Information
-                                    </h3>
-                                    <div className='flex flex-col items-center font-medium'>
-                                        <p className='text-white'>Speed: {weather.wind.speed} m/s</p>
-                                        <p className='text-white'>Direction: {weather.wind.deg}°</p>
-                                        <p className='text-white'>Gusts: {weather.wind.gust || 'N/A'} m/s</p>
-                                    </div>
-                                </div>
-
-                                {/* Humidity & Pressure Card */}
-                                <div className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-lg shadow-lg p-6 card">
-                                    <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-                                        <FaTint /> Humidity & Pressure
-                                    </h3>
-                                    <div className='flex flex-col items-center font-medium'>
-                                        <p className='text-white'>Humidity: {weather.main.humidity}%</p>
-                                        <p className='text-white'>Pressure: {weather.main.pressure} hPa</p>
-                                        <p className='text-white'>Sea Level: {weather.main.sea_level || 'N/A'} hPa</p>
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div className='flex flex-col sm:flex-row gap-6 card-pair'>
-                                {/* Visibility & Clouds Card */}
-                                <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-lg shadow-lg p-6 h-full card">
-                                    <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-                                        <FaEye /> Visibility & Clouds
-                                    </h3>
-                                    <div className='flex flex-col items-center font-medium'>
-                                        <p className='text-white'>Visibility: {weather.visibility / 1000} km</p>
-                                        <p className="text-white flex items-center gap-2">
-                                            <FaCloud color='white' /> Cloud Cover: {weather.clouds.all}%
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Sunrise/Sunset Card */}
-                                <div className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 rounded-lg shadow-lg p-6 card">
-                                    <h3 className="text-xl font-semibold text-white flex flex-col items-center gap-2">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <FaSun color="yellow" />
-                                            Sunrise: {formatTime(weather.sys.sunrise)}
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <FaSun color="yellow" />
-                                            Sunset: {formatTime(weather.sys.sunset)}
-                                        </div>
-                                    </h3>
-                                </div>
                                 </div>
 
                             </div>
@@ -368,8 +363,6 @@ function App() {
 
                             </div>
                         </motion.div>
-
-
                     )}
                 </AnimatePresence>
             </div>
