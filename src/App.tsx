@@ -132,7 +132,7 @@ function App() {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5 }}
                     whileHover={{ scale: 1.1 }}
-                    className="text-6xl text-yellow-500 mb-2"
+                    className="text-6xl text-yellow-300 mb-2"
                 >
                     {icon}
                 </motion.div>
@@ -211,22 +211,24 @@ function App() {
                             {/* Left Column - Weather Information Cards */}
                             <div className="w-full md:w-1/2 flex flex-col gap-6">
 
+                            <WeatherIconWithTemperature weather={weather} />
+
                                 <div className='flex flex-col sm:flex-row gap-6 card-pair'>
                                 {/* Location Card */}
-                                <div className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-lg shadow-lg p-6 card">
+                                <div className="flex justify-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-lg shadow-lg p-6 card">
                                     <div className="flex flex-col gap-3 md:flex-row justify-center items-center">
-                                        <div>
-                                            <h3 className="text-2xl font-bold text-white flex items-center ">
-                                                <FaMapPin /> {weather.name}, {weather.sys.country}
+                                        {/* <div> */}
+                                            <h3 className="text-2xl font-bold text-white flex flex-col items-center ">
+                                                <FaMapPin /> <p className='text-4xl'>{weather.name}</p> {weather.sys.country}
                                             </h3>
-                                            <p className="text-lg text-white capitalize font-medium text-center">{weather.weather[0].description}</p>
-                                        </div>
-                                        <div className='flex flex-col items-center'>
+                                            {/* <p className="text-lg text-white capitalize font-medium text-center">{weather.weather[0].description}</p> */}
+                                        {/* </div> */}
+                                        {/* <div className='flex flex-col items-center'>
                                             <h2 className="text-4xl text-white font-bold">{Math.round(weather.main.temp)}°C</h2>
                                             <p className='text-4xl text-yellow-400'>
                                                 {getWeatherIcon(weather.weather[0].description)}
                                             </p>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
 
